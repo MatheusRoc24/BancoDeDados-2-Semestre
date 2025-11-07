@@ -1,9 +1,16 @@
 from conexao import get_conexao
+<<<<<<< HEAD
 from psycopg2.extras import RealDictCursor
+=======
+
+from psycopg2.extras import RealDictCursor
+
+>>>>>>> b55925e (bd)
 from flask import jsonify
 
 
 def buscar_tarefas():
+<<<<<<< HEAD
     conn = None
     try:
         conn = get_conexao()
@@ -19,3 +26,16 @@ def buscar_tarefas():
     finally:
         if conn:
             conn.close()
+=======
+    conn = get_conexao()
+    cursor = conn.cursor(cursor_factory=RealDictCursor)
+    cursor.execute
+    (
+        "SELECT id, nome, descricao FROM tarefas;"
+    )
+    tarefas = cursor.fetchall()
+    cursor.close()
+    conn.close()
+
+    return jsonify(tarefas)
+>>>>>>> b55925e (bd)
