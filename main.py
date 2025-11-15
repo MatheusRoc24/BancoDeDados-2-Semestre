@@ -43,9 +43,32 @@ def deletar_tarefa(tarefa_id):
     from tarefa import deletar_tarefa as delete_tarefa
     resultado = delete_tarefa(tarefa_id)
     return resultado
+
+@app.route('api/tarefa/<int:tarefa_id>', methods=['DELETE'])
+def apagar_tarefa(tarefa_id):
+    apagar_tarefa(tarefa_id)
+    return{
+        "mensagem": "Tarefa apagada com sucesso!"
+    }
+
+@app.route('/api/tarefas', methods=['POST'])
+def create_tarefa():
+    corpo: request.json
+    nome = corpo.get('nome')
+    descricao = corpo.get('descricao')
+    criar_tarefa(nome, descricao)
+    return{
+        "mensagem": "Tarefa criada com sucesso!"
+    }
+@app.route('api/tarefas/<int:tarefa_id>', methods=['PUT']
+     def update_tarefa(tarefa_id):
+    corpo: request.json
+    nome = corpo.get('nome')
+    descricao = corpo.get('descricao')
+    atualizar_tarefa(nome, descricao, tarefa_id)
+    return{
+        "mensagem": "Tarefa atualizada com sucesso!"
+    }
 # E liga o servidor executando o Flask 😊
 if __name__ == "__main__":
     app.run(debug=True)
-
-  
-
